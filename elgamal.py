@@ -17,11 +17,14 @@ def encrypt(pk, m):
     r = random.randint(1, q)
     c1 = pow(g, r, p)
     # c2 = (pow(pk, r) * m) % p
-    c2 = pow(pow(pk, r, p) * m, 1, p)
+    c2 = pow(pk, r, p) * m
+    c2 = pow(c2, 1, p)
     return [c1, c2]
 
 
 def decrypt(sk, c):
     c1, c2 = c
-    m = pow(c2 / pow(c1, sk), 1, p)
+    m = pow(c1, -sk, p) * c2
+    m = pow(m, 1, p)
+
     return m

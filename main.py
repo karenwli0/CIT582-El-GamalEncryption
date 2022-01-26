@@ -1,9 +1,9 @@
 from elgamal import *
 
 pk, sk = keygen()
-# print(pk, sk)
+# print(sk)
 
-c = encrypt(pk, 1)
+c = encrypt(pk, 2)
 m = decrypt(sk, c)
 
 print(m)
